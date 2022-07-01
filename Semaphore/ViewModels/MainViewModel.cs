@@ -72,7 +72,7 @@ namespace Semaphore.ViewModels
                             dispatcher.Invoke(() => waitthreads.Remove(waitthreads[0]));
                            
                             st = true;
-                            Thread.Sleep(8000);
+                            Thread.Sleep(4000);
                             dispatcher.Invoke(() => workingthreads.Remove(threadcopy));
                             
                             semaphore.Release();
