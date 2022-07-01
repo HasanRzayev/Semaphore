@@ -45,7 +45,7 @@ namespace Semaphore.ViewModels
             get { return selected_wait_theead; }
             set { selected_wait_theead = value; OnPropertyChanged(); }
         }
-        static System.Threading.Semaphore semaphore = new System.Threading.Semaphore(int.Parse(NumberCount), int.Parse(NumberCount);
+        static System.Threading.Semaphore semaphore = new System.Threading.Semaphore(2, 2);
 
 
         public ObservableCollection<Thread> createthreads { get; set; } = new ObservableCollection<Thread>();
