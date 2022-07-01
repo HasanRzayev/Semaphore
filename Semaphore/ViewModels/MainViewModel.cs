@@ -27,7 +27,7 @@ namespace Semaphore.ViewModels
         public string NumberCount
         {
             get { return numbercount; }
-            set { numbercount = value; OnPropertyChanged();}
+            set { numbercount = value; OnPropertyChanged(); }
         }
 
 
@@ -45,15 +45,19 @@ namespace Semaphore.ViewModels
             get { return selected_wait_theead; }
             set { selected_wait_theead = value; OnPropertyChanged(); }
         }
-        static System.Threading.Semaphore semaphore = new System.Threading.Semaphore(2, 2);
+        static System.Threading.Semaphore semaphore = new System.Threading.Semaphore(int.Parse(NumberCount), int.Parse(NumberCount);
 
 
-        public ObservableCollection<Thread> createthreads { get; set; }=new ObservableCollection<Thread>();
-        public ObservableCollection<Thread> waitthreads { get; set; }=new ObservableCollection<Thread>();
-        public ObservableCollection<Thread> workingthreads { get; set; }=new ObservableCollection<Thread>();
-        private  void SomeMethod(object state)
+        public ObservableCollection<Thread> createthreads { get; set; } = new ObservableCollection<Thread>();
+        public ObservableCollection<Thread> waitthreads { get; set; } = new ObservableCollection<Thread>();
+        public ObservableCollection<Thread> workingthreads { get; set; } = new ObservableCollection<Thread>();
+
+
+
+        private void MyMethod(object state)
         {
-           Thread threadcopy = new Thread(SomeMethod) ;
+            semaphore=new System.Threading.Semaphore(int.Parse(NumberCount), int.Parse(NumberCount));
+            Thread threadcopy = Thread.CurrentThread;
             bool st = false;
             while (!st)
             {
@@ -61,34 +65,32 @@ namespace Semaphore.ViewModels
                 {
                     try
                     {
+                        if (waitthreads.Count() !=0)
+                        {
+                            dispatcher.Invoke(() => workingthreads.Add(waitthreads[0]));
+                        threadcopy=waitthreads[0];
+                        dispatcher.Invoke(() => waitthreads.Remove(waitthreads[0]));
+                            }
                         Thread.Sleep(2000);
                     }
                     finally
                     {
-                        if (waitthreads.Count()!=0)
-                        {
-                            dispatcher.Invoke(() => workingthreads.Add(waitthreads[0]));
-                            threadcopy=waitthreads[0];
-                            dispatcher.Invoke(() => waitthreads.Remove(waitthreads[0]));
-                           
-                            st = true;
+                     
+                          
                             Thread.Sleep(4000);
                             dispatcher.Invoke(() => workingthreads.Remove(threadcopy));
-                            
-                            semaphore.Release();
-
-                        }
-                       
+        
+                        st = true;
+                        semaphore.Release();
+                 
                     }
                 }
-                else
-                {
-                }
+                
             }
-           
-            
-         
-            
+
+
+
+
             //workingthreads.Remove();
         }
         private Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
@@ -97,12 +99,12 @@ namespace Semaphore.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                Thread current = new Thread(SomeMethod);
+                Thread current = new Thread(MyMethod);
                 //ThreadPool.CurrentThread.Name=$"Thread--{nomre}";
                 current.Name=$"Thread--{nomre}";
                 createthreads.Add(current);
                 nomre++;
-               
+
             });
         }
         private void OnMouseDoubleClick(object obj)
@@ -113,9 +115,9 @@ namespace Semaphore.ViewModels
             createthreads.Remove(Selected_create_theead);
 
 
-               
-            
-            
+
+
+
 
 
         }
@@ -133,7 +135,7 @@ namespace Semaphore.ViewModels
 
 
         public int nomre { get; set; } = 1;
-        public MainViewModel() 
+        public MainViewModel()
         {
             double_button_1=new RelayCommand<object>(OnMouseDoubleClick);
             double_button_2=new RelayCommand<object>(OnMouseDoubleClick_2);

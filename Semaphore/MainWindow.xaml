@@ -53,10 +53,10 @@
                         </Border.BorderBrush>
                             <StackPanel Background="#f3d17c" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" >
 
-                                <ListBox HorizontalContentAlignment="Center" Foreground="Black"   ItemsSource="{Binding workingthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="650" >
+                                <ListBox HorizontalContentAlignment="Center" Foreground="Black"   ItemsSource="{Binding workingthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="550" >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}">
+                                            <TextBlock Text="{Binding Name}" FontFamily="Berlin Sans FB" FontSize="20">
                                                 
                                             </TextBlock>
                                         </DataTemplate>
@@ -75,10 +75,10 @@
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
                             <StackPanel Background="#f3d17c" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" >
-                                <ListBox HorizontalContentAlignment="Center" Foreground="Black" SelectedItem="{Binding Selected_wait_theead}"   ItemsSource="{Binding waitthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="650" >
+                                <ListBox HorizontalContentAlignment="Center" Foreground="Black" SelectedItem="{Binding Selected_wait_theead}"   ItemsSource="{Binding waitthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="550" >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}">
+                                            <TextBlock Text="{Binding Name}" FontFamily="Berlin Sans FB" FontSize="20">
                                                 <TextBlock.InputBindings>
                                                     <MouseBinding Gesture="LeftDoubleClick"                                           
                                   Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.double_button_2}" CommandParameter="{Binding}" />
@@ -100,10 +100,10 @@
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
                             <StackPanel Background="#f3d17c" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" >
-                                <ListBox HorizontalContentAlignment="Center" Foreground="Black" SelectedItem="{Binding Selected_create_theead}"   ItemsSource="{Binding createthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="650" >
+                                <ListBox HorizontalContentAlignment="Center" Foreground="Black" SelectedItem="{Binding Selected_create_theead}"   ItemsSource="{Binding createthreads,UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="550" >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}">
+                                            <TextBlock Text="{Binding Name}" FontFamily="Berlin Sans FB" FontSize="20">
                                                 <TextBlock.InputBindings>
                                                     <MouseBinding Gesture="LeftDoubleClick"                                           
                                   Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.double_button_1}" CommandParameter="{Binding}" />
@@ -111,9 +111,7 @@
                                             </TextBlock>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
-
                                 </ListBox>
-
                             </StackPanel>
                         </Border>
                     </Border>
@@ -135,13 +133,13 @@
                     <Border BorderThickness="20" Grid.Column="1"  >
                         <Grid
 >
-                        <Button Height="80" Width="200"
+                            <Button Height="80" Width="200" Background="#f3d17c"
     Style="{StaticResource MaterialDesignRaisedButton}"
     materialDesign:ButtonAssist.CornerRadius="10" Command="{Binding Create}"
     ToolTip="MaterialDesignRaisedButton with Round Corners"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                             <TextBlock
-      Text="Create" />
+      Text="Create"  FontSize="50"/>
                         </Button>
                     </Grid>
                     </Border>
